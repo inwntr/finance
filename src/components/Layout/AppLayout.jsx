@@ -24,7 +24,7 @@ export default function AppLayout({ children }) {
             <div className="avatar">
               {user?.avatarUrl ? (
                 <img
-                  src={`https://finance-api-huo4.onrender.com${user.avatarUrl}`}
+                  src={user.avatarUrl}
                   alt="Avatar"
                 />
               ) : (
