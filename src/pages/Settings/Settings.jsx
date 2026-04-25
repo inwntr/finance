@@ -34,7 +34,8 @@ export default function Settings() {
 
     const response = await api.patch('/user/profile', formData, {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data'
       }
     })
 
@@ -57,14 +58,7 @@ export default function Settings() {
             <div className="avatar-upload">
               <div className="settings-avatar">
                 {preview ? (
-                  <img
-                    src={
-                      preview.startsWith('blob:')
-                        ? preview
-                        : `http://localhost:3000${preview}`
-                    }
-                    alt="Avatar"
-                  />
+                  <img src={preview} alt="Avatar" />
                 ) : (
                   username.charAt(0).toUpperCase()
                 )}
