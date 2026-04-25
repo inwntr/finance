@@ -192,3 +192,54 @@
   line-height: 1;
   margin: 0;
 }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  opacity: 0.72;
+}
+
+.footer-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.sidebar-footer small {
+  display: inline;
+  font-size: 0.68rem;
+  line-height: 1.2;
+  color: #94a3b8;
+}
+
+.sidebar-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 1px;
+  text-decoration-thickness: 1px;
+  outline: none;
+  box-shadow: none;
+}
+
+.sidebar-footer a,
+.sidebar-footer a:hover,
+.sidebar-footer a:focus,
+.sidebar-footer a:active,
+.sidebar-footer a:visited {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+  color: inherit !important;
+  text-decoration: underline;
+  text-underline-offset: 1px;
+}
