@@ -4,6 +4,7 @@ import './AppLayout.css'
 export default function AppLayout({ children }) {
   const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem('@finance:user'))
+  const year = new Date().getFullYear()
 
   function handleLogout() {
     localStorage.removeItem('@finance:token')
@@ -17,16 +18,13 @@ export default function AppLayout({ children }) {
         <div className="sidebar-top">
           <div className="brand">
             <img src="/finance-icon.png" alt="Finance" className="brand-icon" />
-            <h2 className='name'>Finance</h2>
+            <h2 className="name">Finance</h2>
           </div>
 
           <div className="sidebar-profile">
             <div className="avatar">
               {user?.avatarUrl ? (
-                <img
-                  src={user.avatarUrl}
-                  alt="Avatar"
-                />
+                <img src={user.avatarUrl} alt="Avatar" />
               ) : (
                 user?.username?.charAt(0).toUpperCase()
               )}
@@ -49,6 +47,13 @@ export default function AppLayout({ children }) {
         </div>
 
         <button onClick={handleLogout}>Sair</button>
+
+        <footer className="sidebar-footer">
+          <img src="/haonicon.png" alt="Haon Technologies" className="footer-icon"/>
+          <small>
+            <a href="https://haontechnologies.com" target="_blank" rel="noreferrer">Haon Technologies</a> © {year} | <a href="https://haongroup.com" target="_blank" rel="noreferrer">Haon Group</a>. All rights reserved.
+          </small>
+        </footer>
       </aside>
 
       <section className="app-content">{children}</section>
