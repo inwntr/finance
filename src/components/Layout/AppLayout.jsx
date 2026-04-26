@@ -49,9 +49,8 @@ export default function AppLayout({ children }) {
         <button className="logout-button" onClick={handleLogout}>Sair</button>
 
         <footer className="sidebar-footer">
-          <img src="/haonicon.png" alt="Haon Technologies" className="footer-icon"/>
           <small>
-            <a href="https://haontechnologies.com" target="_blank" rel="noreferrer">Haon Technologies</a> © {year} | <a href="https://haongroup.com" target="_blank" rel="noreferrer">Haon Group</a>. All rights reserved.
+            <a href="https://haontechnologies.netlify.app" target="_blank" rel="noreferrer">Haon Technologies</a> © {year} | <a href="https://haongroup.netlify.app" target="_blank" rel="noreferrer">Haon Group</a>. All rights reserved.
           </small>
         </footer>
       </aside>
