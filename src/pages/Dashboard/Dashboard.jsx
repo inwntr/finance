@@ -15,6 +15,12 @@ export default function Dashboard() {
   const [summary, setSummary] = useState(null)
   const [incomes, setIncomes] = useState([])
   const [expenses, setExpenses] = useState([])
+  const [deleteModal, setDeleteModal] = useState({
+    open: false,
+    type: null,
+    id: null,
+    message: ''
+  })
 
   function formatCurrency(value) {
     return new Intl.NumberFormat('pt-BR', {
@@ -149,35 +155,48 @@ export default function Dashboard() {
     await loadData()
   }
 
-  async function handleDeleteExpense(id) {
-    const confirmDelete = window.confirm('Deseja remover esta despesa?')
-    if (!confirmDelete) return
-
-    const token = localStorage.getItem('@finance:token')
-
-    await api.delete(`/expenses/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+  function askDeleteIncome(id) {
+    setDeleteModal({
+      open: true,
+      type: 'income',
+      id,
+      message: 'Deseja remover esta entrada?'
     })
-
-    setFeedback('Ação realizada com sucesso.')
-    await loadData()
   }
 
-  async function handleDeleteIncome(id) {
-    const confirmDelete = window.confirm('Deseja remover esta entrada?')
-    if (!confirmDelete) return
+  function askDeleteExpense(id) {
+    setDeleteModal({
+      open: true,
+      type: 'expense',
+      id,
+      message: 'Deseja remover esta despesa?'
+    })
+  }
 
+  async function confirmDelete() {
     const token = localStorage.getItem('@finance:token')
 
-    await api.delete(`/incomes/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+    const headers = {
+      Authorization: `Bearer ${token}`
+    }
+
+    if (deleteModal.type === 'income') {
+      await api.delete(`/incomes/${deleteModal.id}`, { headers })
+      setFeedback('Entrada removida com sucesso.')
+    }
+
+    if (deleteModal.type === 'expense') {
+      await api.delete(`/expenses/${deleteModal.id}`, { headers })
+      setFeedback('Despesa removida com sucesso.')
+    }
+
+    setDeleteModal({
+      open: false,
+      type: null,
+      id: null,
+      message: ''
     })
 
-    setFeedback('Entrada removida com sucesso.')
     await loadData()
   }
 
@@ -191,6 +210,10 @@ export default function Dashboard() {
     setEditingExpenseId(item.id)
     setExpenseName(item.name)
     setExpenseValue(item.value)
+  }
+
+  function formatStatus(status) {
+    return status === 'PAID' ? 'PAGO' : 'PENDENTE'
   }
 
   return (
@@ -208,6 +231,45 @@ export default function Dashboard() {
             {feedback}
           </div>
         )}
+
+        <section className="summary-grid">
+          <article className="summary-card">
+            <span>Entradas</span>
+            <strong>{formatCurrency(summary.totalIncomes)}</strong>
+          </article>
+
+          <article className="summary-card">
+            <span>Saídas totais</span>
+            <strong>{formatCurrency(summary.totalExpenses)}</strong>
+          </article>
+
+          <article className="summary-card">
+            <span>Contas pagas</span>
+            <strong>{formatCurrency(summary.totalPaidExpenses)}</strong>
+          </article>
+
+          <article className="summary-card">
+            <span>Contas pendentes</span>
+            <strong>{formatCurrency(summary.totalPendingExpenses)}</strong>
+          </article>
+        </section>
+
+        <section className="balance-card-wrapper">
+          <section
+            className={
+              summary.currentBalance > 0
+                ? 'balance-card positive'
+                : 'balance-card negative'
+            }
+          >
+            <span>Saldo atual</span>
+            <strong>{formatCurrency(summary.currentBalance)}</strong>
+
+            {summary.alert && (
+              <p>Atenção: seu saldo está zerado ou negativo.</p>
+            )}
+          </section>
+        </section>
 
         <section className="forms-grid">
           <form className="quick-form" onSubmit={handleCreateIncome}>
@@ -251,45 +313,8 @@ export default function Dashboard() {
           </form>
         </section>
 
-        <section className="summary-grid">
-          <article className="summary-card">
-            <span>Entradas</span>
-            <strong>{formatCurrency(summary.totalIncomes)}</strong>
-          </article>
-
-          <article className="summary-card">
-            <span>Saídas totais</span>
-            <strong>{formatCurrency(summary.totalExpenses)}</strong>
-          </article>
-
-          <article className="summary-card">
-            <span>Contas pagas</span>
-            <strong>{formatCurrency(summary.totalPaidExpenses)}</strong>
-          </article>
-
-          <article className="summary-card">
-            <span>Contas pendentes</span>
-            <strong>{formatCurrency(summary.totalPendingExpenses)}</strong>
-          </article>
-        </section>
-
-        <section
-          className={
-            summary.currentBalance > 0
-              ? 'balance-card positive'
-              : 'balance-card negative'
-          }
-        >
-          <span>Saldo atual</span>
-          <strong>{formatCurrency(summary.currentBalance)}</strong>
-
-          {summary.alert && (
-            <p>Atenção: seu saldo está zerado ou negativo.</p>
-          )}
-        </section>
-
         <section className="lists-grid">
-          <article className="list-card">
+          <article className={`list-card ${incomes.length > 0 ? 'has-items' : ''}`}>
             <h2>Entradas</h2>
 
             {incomes.length === 0 ? (
@@ -305,7 +330,7 @@ export default function Dashboard() {
                   <div className="expense-actions">
                     <strong>{formatCurrency(item.value)}</strong>
                     <button onClick={() => handleEditIncome(item)}>✏️</button>
-                    <button onClick={() => handleDeleteIncome(item.id)}>🗑️</button>
+                    <button onClick={() => askDeleteIncome(item.id)}>🗑️</button>
                   </div>
                 </div>
               ))
@@ -325,7 +350,7 @@ export default function Dashboard() {
                 <div key={item.id} className="list-item">
                   <div>
                     <span>{item.name}</span>
-                    <small>{item.status}</small>
+                    <small>{formatStatus(item.status)}</small>
                   </div>
 
                   <div className="expense-actions">
@@ -338,13 +363,48 @@ export default function Dashboard() {
                     <button onClick={() => handleEditExpense(item)}>✏️</button>
                     <button onClick={() => handlePendingExpense(item.id)}>❌</button>
                     <button onClick={() => handlePayExpense(item.id)}>✅</button>
-                    <button onClick={() => handleDeleteExpense(item.id)}>🗑️</button>
+                    <button onClick={() => askDeleteExpense(item.id)}>🗑️</button>
                   </div>
                 </div>
               ))
             )}
           </article>
         </section>
+
+        {deleteModal.open && (
+          <div className="modal-overlay">
+            <div className="confirm-modal">
+              <h2>Confirmar remoção</h2>
+              <p>{deleteModal.message}</p>
+
+              <div className="confirm-actions">
+                <button
+                  type="button"
+                  className="cancel-button"
+                  onClick={() =>
+                    setDeleteModal({
+                      open: false,
+                      type: null,
+                      id: null,
+                      message: ''
+                    })
+                  }
+                >
+                  Cancelar
+                </button>
+
+                <button
+                  type="button"
+                  className="delete-button"
+                  onClick={confirmDelete}
+                >
+                  Remover
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
       </main>
     </AppLayout>
   )

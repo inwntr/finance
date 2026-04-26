@@ -18,7 +18,7 @@ export default function AppLayout({ children }) {
         <div className="sidebar-top">
           <div className="brand">
             <img src="/finance-icon.png" alt="Finance" className="brand-icon" />
-            <h2 className="name">Finance</h2>
+            <h2 className="name">My Finance</h2>
           </div>
 
           <div className="sidebar-profile">
@@ -34,7 +34,7 @@ export default function AppLayout({ children }) {
           </div>
         </div>
 
-        <nav>
+        <nav className="sidebar-nav">
           <NavLink to="/dashboard">Dashboard</NavLink>
           <NavLink to="/charts">Gráficos</NavLink>
           <NavLink to="/settings">Configurações</NavLink>
@@ -46,7 +46,7 @@ export default function AppLayout({ children }) {
           <small>Resumo financeiro</small>
         </div>
 
-        <button onClick={handleLogout}>Sair</button>
+        <button className="logout-button" onClick={handleLogout}>Sair</button>
 
         <footer className="sidebar-footer">
           <img src="/haonicon.png" alt="Haon Technologies" className="footer-icon"/>
