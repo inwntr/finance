@@ -3,3 +3,7 @@ body {
   background: var(--bg);
   color: var(--text);
 }
+
+* {
+  outline: 1px solid red;
+}
