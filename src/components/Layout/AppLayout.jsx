@@ -98,25 +98,6 @@ export default function AppLayout({ children }) {
           <span>Cloud connected</span>
         </div>
 
-        <div className="sidebar-status-card desktop-only">
-          <div className="status-dot" />
-          <span>Data protected</span>
-        </div>
-
-        <div className="sidebar-mini-card desktop-only">
-          <small>weekly rhythm</small>
-          <strong>steady progress</strong>
-        </div>
-
-        <div className="sidebar-mini-card desktop-only">
-          <small>system note</small>
-          <strong>small habits compound</strong>
-        </div>
-
-        <div className="sidebar-quote-card desktop-only">
-          <p>“Control creates freedom.”</p>
-        </div>
-
         <div className="sidebar-version desktop-only">
           v1.0.0 • My Finance
         </div>
