@@ -19,8 +19,6 @@ async function loadApiStatus() {
   try {
     const response = await api.get('/status')
 
-    console.log('API STATUS:', response.data)
-
     setApiStatus(response.data)
   } catch (error) {
     console.log('STATUS ERROR:', error)
