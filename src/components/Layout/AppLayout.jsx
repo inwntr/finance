@@ -37,6 +37,7 @@ export default function AppLayout({ children }) {
         <nav className="sidebar-nav">
           <NavLink to="/dashboard">Dashboard</NavLink>
           <NavLink to="/charts">Gráficos</NavLink>
+          <NavLink to="/reports">Relatórios</NavLink>
           <NavLink to="/settings">Configurações</NavLink>
         </nav>
 
@@ -44,6 +45,80 @@ export default function AppLayout({ children }) {
           <span>Saldo atual</span>
           <strong>Ver no dashboard</strong>
           <small>Resumo financeiro</small>
+        </div>
+
+        <div className="sidebar-widget desktop-only">
+          <span>💸</span>
+          <strong>My Finance</strong>
+          <p>Organizando seu caos financeiro.</p>
+        </div>
+
+        <div className="sidebar-quote desktop-only">
+          <p>“Dinheiro quieto também trabalha.”</p>
+        </div>
+
+        <div className="sidebar-decoration desktop-only">
+          <div className="orb orb-one" />
+          <div className="orb orb-two" />
+        </div>
+
+        <div className="sidebar-brand-card desktop-only">
+          <img src="/finance-icon.png" alt="My Finance" className="sidebar-brand-logo" />
+          <div>
+            <strong>My Finance</strong>
+            <p>organize. track. grow.</p>
+          </div>
+        </div>
+
+        <div className="sidebar-about-card desktop-only">
+          <span>✦</span>
+          <p>Feito para transformar controle financeiro em clareza diária.</p>
+        </div>
+
+        <div className="sidebar-focus-card desktop-only">
+          <small>foco do mês</small>
+          <strong>consistência {'>'} perfeição</strong>
+        </div>
+
+        <div className="sidebar-founder-card desktop-only">
+          <div className="sidebar-founder-avatar icon-avatar">✦</div>
+          <div>
+            <strong>Built by Aroe</strong>
+            <p>indie maker building finance tools.</p>
+          </div>
+        </div>
+
+        <div className="sidebar-status-card desktop-only">
+          <div className="status-dot" />
+          <span>Sync ativo</span>
+        </div>
+
+        <div className="sidebar-status-card desktop-only">
+          <div className="status-dot" />
+          <span>Cloud connected</span>
+        </div>
+
+        <div className="sidebar-status-card desktop-only">
+          <div className="status-dot" />
+          <span>Data protected</span>
+        </div>
+
+        <div className="sidebar-mini-card desktop-only">
+          <small>weekly rhythm</small>
+          <strong>steady progress</strong>
+        </div>
+
+        <div className="sidebar-mini-card desktop-only">
+          <small>system note</small>
+          <strong>small habits compound</strong>
+        </div>
+
+        <div className="sidebar-quote-card desktop-only">
+          <p>“Control creates freedom.”</p>
+        </div>
+
+        <div className="sidebar-version desktop-only">
+          v1.0.0 • My Finance
         </div>
 
         <button className="logout-button" onClick={handleLogout}>Sair</button>

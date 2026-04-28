@@ -17,3 +17,14 @@ textarea {
   -webkit-user-select: text;
   user-select: text;
 } 
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}

@@ -7,6 +7,7 @@ import NotFound from '../pages/NotFound/NotFound'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 import Settings from '../pages/Settings/Settings'
+import Reports from '../pages/Reports/Reports'
 
 export default function AppRoutes() {
   return (
@@ -53,6 +54,15 @@ export default function AppRoutes() {
           element={
             <PrivateRoute>
               <Settings />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <Reports />
             </PrivateRoute>
           }
         />
