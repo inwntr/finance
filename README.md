@@ -1,17 +1,37 @@
-# Finance
+# 💸 My Finance
 
-Aplicação fullstack para organização financeira pessoal, com autenticação, controle de entradas e despesas, dashboard interativo, gráficos e personalização de perfil.
+Full-stack financial management application for personal expense tracking, income control, reports, charts and profile customization.
 
-## Tecnologias
+> Private production deployment with real usage.
+
+---
+
+## 📸 Preview
+
+<p align="center">
+  <img src="./src/assets/login.png" width="48%" />
+  <img src="./src/assets/dashboard.png" width="48%" />
+  <img src="./src/assets/metas.png" width="48%" />
+  <img src="./src/assets/dashboard.png" width="48%" />
+</p>
+
+<p align="center">
+  <img src="./src/assets/relatorios.png" width="48%" />
+  <img src="./src/assets/settings.png" width="48%" />
+</p>
+
+---
+
+## 🚀 Tech Stack
 
 ### Frontend
 
-* React
+* React.js
 * Vite
 * React Router DOM
 * Axios
 * Recharts
-* CSS puro
+* Pure CSS
 
 ### Backend
 
@@ -21,55 +41,82 @@ Aplicação fullstack para organização financeira pessoal, com autenticação,
 * PostgreSQL
 * JWT
 * Multer
+* Cloudinary
+
+### Infrastructure
+
+* PostgreSQL hosted on Neon
+* Frontend hosted on Netlify
+* API hosted on Vercel
 
 ---
 
-## Funcionalidades
+## ✨ Features
 
-### Autenticação
+### Authentication
 
-* Cadastro de usuário
-* Login com username ou email
-* Autenticação com JWT
-* Rotas públicas e privadas
+* User registration
+* Login with username or email
+* JWT authentication
+* Public and protected routes
 
 ### Dashboard
 
-* Resumo financeiro
-* Saldo atual
-* Total de entradas
-* Total de despesas
-* Contas pagas
-* Contas pendentes
+* Financial summary
+* Current balance
+* Total income
+* Total expenses
+* Paid bills
+* Pending bills
+* Monthly period filter
+* Search and advanced filters
+* Automatic financial insights
 
-### Entradas
+### Income Management
 
-* Criar entrada
-* Editar entrada
-* Remover entrada
+* Create income
+* Edit income
+* Delete income
+* Filter by period and category
 
-### Despesas
+### Expense Management
 
-* Criar despesa
-* Editar despesa
-* Marcar como paga
-* Marcar como pendente
-* Remover despesa
+* Create expense
+* Edit expense
+* Mark as paid
+* Mark as pending
+* Delete expense
+* Recurring expense option
 
-### Gráficos
+### Reports
 
-* Visão geral de entradas e saídas
-* Gráfico interativo
+* Monthly financial reports
+* Paid and pending bills summary
+* PDF export
 
-### Perfil
+### Charts
 
-* Alterar username
-* Upload de avatar
-* Atualização de perfil
+* Financial overview
+* Interactive charts with Recharts
+
+### Profile
+
+* Update username
+* Upload avatar
+* Profile customization
+* Password update
+* Account deletion
+
+### Financial Goals
+
+* Create financial goals
+* Track target value
+* Track current value
+* Set deadline
 
 ---
 
-## Estrutura do projeto
+## 📁 Project Structure
 
 ```bash
 finance/
@@ -99,15 +146,13 @@ frontend/
 
 ---
 
-## Instalação
+## ⚙️ Installation
 
-### 1. Clone o projeto
+### 1. Clone the repository
 
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 ```
-
----
 
 ### 2. Backend
 
@@ -116,27 +161,28 @@ cd backend
 npm install
 ```
 
-Crie o arquivo `.env`:
+Create a `.env` file:
 
 ```env
 PORT=3000
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/finance_db"
 JWT_SECRET="your_secret_key"
+CLOUDINARY_CLOUD_NAME="your_cloud_name"
+CLOUDINARY_API_KEY="your_api_key"
+CLOUDINARY_API_SECRET="your_api_secret"
 ```
 
-Rode as migrations:
+Run Prisma migrations:
 
 ```bash
 npx prisma migrate dev
 ```
 
-Inicie o servidor:
+Start the backend server:
 
 ```bash
 npm run dev
 ```
-
----
 
 ### 3. Frontend
 
@@ -148,19 +194,17 @@ npm run dev
 
 ---
 
-## Build
-
-### Frontend
+## 📦 Build
 
 ```bash
 npm run build
 ```
 
-Gera a pasta `dist/` pronta para produção.
+Generates the `dist/` folder for production.
 
 ---
 
-## Rotas principais
+## 🔗 Main API Routes
 
 ### Auth
 
@@ -198,16 +242,16 @@ Gera a pasta `dist/` pronta para produção.
 
 ---
 
-## Próximos passos
+## 🗺️ Roadmap
 
-* Deploy
-* Filtro por mês
-* Categorias
-* Melhorias de acessibilidade
-* Tema claro/escuro
+* Light/dark theme
+* More accessibility improvements
+* Advanced category management
+* More detailed financial insights
+* Mobile layout improvements
 
 ---
 
-## Licença
+## 📄 License
 
-Projeto para fins de estudo e portfólio.
+This project was built for study, portfolio and real usage.
