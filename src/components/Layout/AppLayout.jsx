@@ -137,9 +137,7 @@ async function loadApiStatus() {
               {!apiStatus && 'Checking API'}
             </strong>
 
-            <p>
-              {apiStatus?.latencyMs ? `${apiStatus.latencyMs}ms latency` : 'Status service'}
-            </p>
+            <p> {apiStatus?.latencyMs ? `${apiStatus.latencyMs}ms latency` : 'Status service'} </p>
           </div>
         </div>
 
