@@ -149,7 +149,7 @@ async function loadApiStatus() {
 
         <footer className="sidebar-footer">
           <small>
-            <a href="https://haontechnologies.netlify.app" target="_blank" rel="noreferrer">Haon Technologies</a> © {year} | <a href="https://haongroup.netlify.app" target="_blank" rel="noreferrer">Haon Group</a>. All rights reserved.
+            <a href="https://haontechnologies.netlify.app" target="_blank" rel="noreferrer">Powered by: Winter</a> © {year} | <a href="https://haongroup.netlify.app" target="_blank" rel="noreferrer">My Finance</a>. All rights reserved.
           </small>
         </footer>
       </aside>
